@@ -25,6 +25,7 @@ public class KirbyController : MonoBehaviour
     public GameObject player1option;
     public GameObject player2option;
 
+
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
@@ -63,6 +64,14 @@ public class KirbyController : MonoBehaviour
         {
             isJumping = false;
             animator.SetBool("Jump", false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Head"))
+        {
+            rd2d.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
         }
     }
     void Update()

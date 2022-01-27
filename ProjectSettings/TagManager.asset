@@ -10,6 +10,8 @@ TagManager:
   - Kirby
   - Goomba
   - Koopa
+  - Undefined
+  - Head
   layers:
   - Default
   - TransparentFX

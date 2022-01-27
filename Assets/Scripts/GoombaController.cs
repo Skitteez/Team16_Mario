@@ -7,7 +7,11 @@ public class GoombaController : MonoBehaviour
     public float speed;
     public bool moveRight;
 
+    public bool death;
+
     private KirbyController kirbyController;
+
+    public Animator animator;
 
     void Start()
     {
@@ -16,11 +20,13 @@ public class GoombaController : MonoBehaviour
         {
             kirbyController = kirbyControllerObject.GetComponent<KirbyController>();
         }
+
+        death = false;
     } 
    
     void Update()
     {
-        if (kirbyController.start == false)
+        if (kirbyController.start == false || death == true)
         {
             return;
         }
