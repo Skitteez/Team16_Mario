@@ -40,7 +40,7 @@ public class GoombaController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Turn"))
+        if(other.gameObject.CompareTag("Turn") || other.gameObject.CompareTag("Goomba") || other.gameObject.CompareTag("Koopa"))
         {
             if(moveRight)
             {

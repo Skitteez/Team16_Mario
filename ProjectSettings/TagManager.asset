@@ -8,6 +8,8 @@ TagManager:
   - Turn
   - LeftLimit
   - Kirby
+  - Goomba
+  - Koopa
   layers:
   - Default
   - TransparentFX
