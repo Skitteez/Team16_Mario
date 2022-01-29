@@ -12,6 +12,12 @@ TagManager:
   - Koopa
   - Undefined
   - Head
+  - KoopaHead
+  - RollingTurn
+  - Shell
+  - Tomato
+  - KirbyHead
+  - MysteryBox
   layers:
   - Default
   - TransparentFX

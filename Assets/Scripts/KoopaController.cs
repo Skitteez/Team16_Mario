@@ -6,8 +6,14 @@ public class KoopaController : MonoBehaviour
 {
     public float speed;
     public bool moveRight;
+    public bool rollingRight;
+
+    public bool death;
 
     private KirbyController kirbyController;
+    private GoombaController goombaController;
+
+    public Animator animator;
 
     void Start()
     {
@@ -16,6 +22,14 @@ public class KoopaController : MonoBehaviour
         {
             kirbyController = kirbyControllerObject.GetComponent<KirbyController>();
         }
+
+        GameObject Goomba = GameObject.FindWithTag("Goomba");
+        if (Goomba != null)
+        {
+            goombaController = Goomba.GetComponent<GoombaController>();
+        }
+
+        death = false;
     } 
    
     void Update()
@@ -25,22 +39,25 @@ public class KoopaController : MonoBehaviour
             return;
         }
 
-        if (moveRight)
+        if (death == false)
         {
-            transform.Translate( 1 * Time.deltaTime * speed, 0,0);
-            transform.localScale = new Vector2 (1,1);
-        }
-        else
-        {
-            transform.Translate( -1 * Time.deltaTime * speed, 0,0);
-            transform.localScale = new Vector2 (-1,1);
+            if (moveRight)
+            {
+                transform.Translate( 1 * Time.deltaTime * speed, 0,0);
+                transform.localScale = new Vector2 (1,1);
+            }
+            else
+            {
+                transform.Translate( -1 * Time.deltaTime * speed, 0,0);
+                transform.localScale = new Vector2 (-1,1);
+            }
         }
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Turn") || other.gameObject.CompareTag("Goomba") || other.gameObject.CompareTag("Koopa"))
+        if (other.collider.tag == "Turn" || (other.collider.tag == "Goomba" && (death == false)))
         {
             if(moveRight)
             {
@@ -49,6 +66,18 @@ public class KoopaController : MonoBehaviour
             else
             {
                 moveRight = true;     
+            }
+        }
+
+        if ((death == true) && (other.collider.tag == "LeftLimit" || other.collider.tag == "RollingTurn"))
+        {
+            if(rollingRight)
+            {
+                rollingRight = false;
+            }
+            else
+            {
+                rollingRight = true;
             }
         }
     }

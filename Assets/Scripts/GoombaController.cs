@@ -9,9 +9,16 @@ public class GoombaController : MonoBehaviour
 
     public bool death;
 
+    public bool shellHit = false;
+
     private KirbyController kirbyController;
 
+    private KoopaController koopaController;
+
+    private KoopaHeadDetect koopaHeadController;
     public Animator animator;
+
+    GameObject Koopa;
 
     void Start()
     {
@@ -19,6 +26,18 @@ public class GoombaController : MonoBehaviour
         if (kirbyControllerObject != null)
         {
             kirbyController = kirbyControllerObject.GetComponent<KirbyController>();
+        }
+
+        GameObject Koopa = GameObject.FindWithTag("Koopa");
+        if (Koopa != null)
+        {
+            koopaController = Koopa.GetComponent<KoopaController>();
+        }
+
+        GameObject KoopaHead = GameObject.FindWithTag("KoopaHead");
+        if (KoopaHead != null)
+        {
+            koopaHeadController = KoopaHead.GetComponent<KoopaHeadDetect>();
         }
 
         death = false;
@@ -41,12 +60,17 @@ public class GoombaController : MonoBehaviour
             transform.Translate( -1 * Time.deltaTime * speed, 0,0);
             transform.localScale = new Vector2 (-1,1);
         }
+
+        if (transform.position.y < -10)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D goombaCollide)
     {
-        if(other.gameObject.CompareTag("Turn") || other.gameObject.CompareTag("Goomba") || other.gameObject.CompareTag("Koopa"))
+        if(goombaCollide.collider.tag == "Turn" || goombaCollide.collider.tag == "Goomba" || (koopaController.transform.position.x == 0 && goombaCollide.collider.tag == "Koopa"))
         {
             if(moveRight)
             {
@@ -56,6 +80,11 @@ public class GoombaController : MonoBehaviour
             {
                 moveRight = true;     
             }
+        }
+
+        if (koopaController.transform.position.x != 0 && goombaCollide.collider.tag == "Koopa")
+        {
+            shellHit = true;
         }
     }
 }

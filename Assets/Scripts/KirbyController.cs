@@ -47,7 +47,7 @@ public class KirbyController : MonoBehaviour
 
             if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.X))
             {
-                rd2d.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+                rd2d.AddForce(new Vector2(0, 6), ForceMode2D.Impulse);
                 animator.SetBool("Jump", true);
                 isJumping = true;
             }
@@ -65,14 +65,21 @@ public class KirbyController : MonoBehaviour
             isJumping = false;
             animator.SetBool("Jump", false);
         }
+
+        if (collision.collider.tag == "KoopaHead")
+        {
+            rd2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+        }
+
+        if (collision.collider.tag == "Head")
+        {
+            rd2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Head"))
-        {
-            rd2d.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
-        }
+
     }
     void Update()
     {           
