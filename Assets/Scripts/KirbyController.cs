@@ -6,18 +6,21 @@ using UnityEngine.UI;
 public class KirbyController : MonoBehaviour
 {
     private Rigidbody2D rd2d;
-    float horizontal;
-    float vertical;
+    public float horizontal;
+    public float vertical;
     public float speed;
+    public float direction;
 
-    Animator animator;
+    public bool isJumping;
 
-    float direction;
+    public bool isRunning;
 
-    private bool isJumping;
+    public bool big;
 
     public bool start;
     bool player1Selected;
+
+    public bool isInvinsible;
 
     public GameObject player1Select;
     public GameObject player2Select;
@@ -25,15 +28,21 @@ public class KirbyController : MonoBehaviour
     public GameObject player1option;
     public GameObject player2option;
 
+    BoxCollider2D kirbyCollider;
+
+    public float starTimer = 20.0f;
+    
 
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        kirbyCollider = GetComponent<BoxCollider2D>();
 
         start = false;
         player1Selected = true;
         player2Select.SetActive(false);
+        isJumping = false;
+        isInvinsible = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -48,7 +57,6 @@ public class KirbyController : MonoBehaviour
             if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.X))
             {
                 rd2d.AddForce(new Vector2(0, 6), ForceMode2D.Impulse);
-                animator.SetBool("Jump", true);
                 isJumping = true;
             }
         }
@@ -63,7 +71,6 @@ public class KirbyController : MonoBehaviour
         if(collision.collider.tag == "Ground")
         {
             isJumping = false;
-            animator.SetBool("Jump", false);
         }
 
         if (collision.collider.tag == "KoopaHead")
@@ -79,7 +86,18 @@ public class KirbyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Tomato" && big == false)
+        {
+            big = true;
+            this.GetComponent<BoxCollider2D>().size = new Vector2(1.729276f, 1.980337f);
+            this.GetComponent<BoxCollider2D>().offset = new Vector2(-0.08966541f, 0.4901683f);
+        
+        }
 
+        if (collision.gameObject.tag == "Hammer")
+        {
+            isInvinsible = true;
+        }
     }
     void Update()
     {           
@@ -119,6 +137,7 @@ public class KirbyController : MonoBehaviour
                     player1Selected = true;
                 }
             }
+
             return;
         }
 
@@ -132,28 +151,24 @@ public class KirbyController : MonoBehaviour
         if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift)) 
         {
             speed = 17f;
-            animator.SetFloat("Speed", 17);
+            isRunning = true;
         }
         else
         {
             speed = 11f;
-            animator.SetFloat("Speed", move.magnitude);
+            isRunning = false;
         }
 
-        animator.SetFloat("Move X", direction);
-
-        if (isJumping == true)
+        
+        if (isInvinsible == true)
         {
-            if (direction < 0)
+            starTimer -= Time.deltaTime;
+
+            if (starTimer <= 0.0f)
             {
-                animator.SetFloat("JumpDirection", 0);
-            }
-            else
-            {
-                animator.SetFloat("JumpDirection", 1);
+                timerEnded();
             }
         }
-
     }
 
     void FixedUpdate()
@@ -166,5 +181,10 @@ public class KirbyController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         rd2d.AddForce(new Vector2(horizontal * speed, vertical * speed));
+    }
+
+    void timerEnded()
+    {
+        isInvinsible = false;
     }
 }

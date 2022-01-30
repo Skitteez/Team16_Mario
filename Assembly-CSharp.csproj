@@ -40,11 +40,13 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\HeadDetect.cs" />
      <Compile Include="Assets\Scripts\PauseControl.cs" />
+     <Compile Include="Assets\Scripts\TomatoController.cs" />
      <Compile Include="Assets\Scripts\KirbyController.cs" />
+     <Compile Include="Assets\Scripts\BlockHeadCheck.cs" />
      <Compile Include="Assets\Scripts\KoopaHeadDetect.cs" />
      <Compile Include="Assets\Scripts\GoombaController.cs" />
-     <Compile Include="Assets\Scripts\TomatoController.cs" />
-     <Compile Include="Assets\Scripts\KirbyHead.cs" />
+     <Compile Include="Assets\Scripts\BigCollider.cs" />
+     <Compile Include="Assets\Scripts\KirbyAnimation.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
