@@ -70,7 +70,7 @@ public class GoombaController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D goombaCollide)
     {
-        if(goombaCollide.collider.tag == "Turn" || goombaCollide.collider.tag == "Goomba" || (koopaController.transform.position.x == 0 && goombaCollide.collider.tag == "Koopa"))
+        if(goombaCollide.collider.tag == "Turn" || goombaCollide.collider.tag == "Goomba" || (koopaController.death == true && koopaController.transform.position.x == 0 && goombaCollide.collider.tag == "Koopa"))
         {
             if(moveRight)
             {

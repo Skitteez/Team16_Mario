@@ -82,5 +82,25 @@ public class KirbyAnimation : MonoBehaviour
             animator.SetBool("Star", false);
         }
 
+        if (kirbyController.gameEnd == true)
+        {
+            if (kirbyController.turn == false)
+            {
+                animator.SetFloat("JumpDirection", 0);
+                animator.SetBool("Jump", true);
+            }
+            if (kirbyController.turn == true)
+            {
+                animator.SetFloat("Move X", 0.3f);
+                animator.SetFloat("Speed", 0.5f);
+            }
+        }
+
+        if (transform.position.x >= 189.08)
+        {
+            Color tmp = GetComponent<SpriteRenderer>().color;
+            tmp.a = 0f;
+            GetComponent<SpriteRenderer>().color = tmp;
+        }    
     }
 }

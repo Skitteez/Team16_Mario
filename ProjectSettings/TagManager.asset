@@ -19,6 +19,10 @@ TagManager:
   - KirbyHead
   - MysteryBox
   - Hammer
+  - FlagPole
+  - FlagTop
+  - FlagBottom
+  - FireFlower
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class TomatoController : MonoBehaviour
     public float speed;
     bool tomatoRight = true;
     Rigidbody2D rigidbody2d;
+    
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -30,14 +31,6 @@ public class TomatoController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnTriggerStay2D(Collider2D tomatostay)
-    {
-        if (tomatostay.gameObject.CompareTag("Ground"))
-        {
-            rigidbody2d.constraints = RigidbodyConstraints2D.FreezePositionY;
-        }
-    }
     private void OnTriggerEnter2D(Collider2D tomatocollide)
     {
         if (tomatocollide.gameObject.CompareTag("Turn"))
@@ -55,6 +48,19 @@ public class TomatoController : MonoBehaviour
         if (tomatocollide.gameObject.CompareTag("Kirby"))
         {
             Destroy(gameObject);
+        }
+        
+        if (tomatocollide.gameObject.CompareTag("Ground"))
+        {
+            rigidbody2d.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D leave)
+    {
+        if (leave.gameObject.CompareTag("Ground"))
+        {
+            rigidbody2d.constraints = RigidbodyConstraints2D.None;
         }
     }
 }

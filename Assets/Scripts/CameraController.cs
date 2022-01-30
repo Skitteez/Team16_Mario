@@ -8,11 +8,16 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        this.transform.position = new Vector3(target.transform.position.x, -1.78f, this.transform.position.z);
+        this.transform.position = new Vector3(target.transform.position.x, -0.52f, this.transform.position.z);
 
-        if (target.transform.position.x < -3.18f)
+        if (target.transform.position.x < -6.19)
         {
-            this.transform.position = new Vector3( -3.18f, -1.78f, this.transform.position.z);
+            this.transform.position = new Vector3( -6.19f, -0.52f, this.transform.position.z);
+        }
+
+        if (target.transform.position.x >= 189.08f)
+        {
+            this.transform.position = new Vector3( 189.08f, -0.52f, this.transform.position.z);
         }
     }
 }

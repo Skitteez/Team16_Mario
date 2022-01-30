@@ -70,6 +70,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cc4059c5866d74fb55c79d0e8c9d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Coin: {fileID: 4268075241510002205, guid: 1f9dac3ab6c5bfd4a81b6057efcdf435, type: 3}
+  Mushroom: {fileID: 5212706621394975734, guid: 0e05a6a66fcf5114fa827ffdf9719516, type: 3}
+  Flower: {fileID: 6088237151027755838, guid: 1fdf3c12d734b8e48823b4f548346a98, type: 3}
+  mysteryCoin: 1
+  coinText: {fileID: 4638308483340520813, guid: c3cbdf1fe688fb74cab6c8df624ebd90, type: 3}
+  mysteryMushroom: 0
+  flower: 0
 --- !u!1 &1294340843266461128
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1674593662}
+  - {fileID: 8849793064571723901}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -179,4 +187,61 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!1 &6327543074986021131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8849793064571723901}
+  - component: {fileID: 5040644990509447253}
+  m_Layer: 0
+  m_Name: Ground (1)
+  m_TagString: Ground
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8849793064571723901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327543074986021131}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.017, y: -0.001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2300744514343145832}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5040644990509447253
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327543074986021131}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.020426273, y: 0.48221704}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.95958805, y: 0.05504948}
   m_EdgeRadius: 0

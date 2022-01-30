@@ -17,7 +17,13 @@ public class KirbyController : MonoBehaviour
 
     public bool big;
 
+    public bool gameEnd;
+
+    public bool turn;
+
     public bool start;
+
+    public bool onFire;
     bool player1Selected;
 
     public bool isInvinsible;
@@ -43,6 +49,8 @@ public class KirbyController : MonoBehaviour
         player2Select.SetActive(false);
         isJumping = false;
         isInvinsible = false;
+        gameEnd = false;
+        turn = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -54,7 +62,7 @@ public class KirbyController : MonoBehaviour
                 return;
             }
 
-            if(Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.X))
+            if((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.X)) && gameEnd == false)
             {
                 rd2d.AddForce(new Vector2(0, 6), ForceMode2D.Impulse);
                 isJumping = true;
@@ -97,6 +105,27 @@ public class KirbyController : MonoBehaviour
         if (collision.gameObject.tag == "Hammer")
         {
             isInvinsible = true;
+        }
+
+        if (collision.gameObject.tag == "FlagPole")
+        {
+            Endgame();
+
+        }
+
+        if (collision.gameObject.tag == "FlagTop")
+        {
+            Endgame();
+        }
+
+        if (collision.gameObject.tag == "FlagBottom")
+        {
+            turn = true;
+        }
+
+        if (collision.gameObject.tag == "FireFlower")
+        {
+            onFire = true;
         }
     }
     void Update()
@@ -178,13 +207,30 @@ public class KirbyController : MonoBehaviour
             return;
         }
 
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-        rd2d.AddForce(new Vector2(horizontal * speed, vertical * speed));
+        if (gameEnd == false)
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+            rd2d.AddForce(new Vector2(horizontal * speed, vertical * speed));
+        }
+
+        if (gameEnd == true && transform.position.y <= -2)
+        {
+            rd2d.AddForce(new Vector2(10,0));
+        }   
     }
 
     void timerEnded()
     {
         isInvinsible = false;
+    }
+
+    void Endgame()
+    {
+        gameEnd = true;
+        transform.position = new Vector3(182.06f, transform.position.y, 0f);
+
+        rd2d.MovePosition(transform.position + Vector3.up * 2.0f);
+
     }
 }
