@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class BlockHeadCheck : MonoBehaviour
 {
     GameObject Block;
@@ -11,18 +10,16 @@ public class BlockHeadCheck : MonoBehaviour
 
     public GameObject Mushroom;
 
-    public GameObject Star;
+    public GameObject Flower;
 
     public bool mysteryCoin;
 
     public Text coinText;
-    public int coinAmount = 0;
+    public int coinAmount;
 
     public bool mysteryMushroom;
 
-    public bool isBreakable;
-
-    public bool star;
+    public bool flower;
 
     float x_Location, y_Location;
     private void Awake()
@@ -36,21 +33,18 @@ public class BlockHeadCheck : MonoBehaviour
         y_Location = transform.position.y;
 
         coinText.text = coinAmount.ToString();
+        coinAmount = 0;
     }
 
-    // Update is called once per frame
     private void OnCollisionEnter2D(Collision2D blockcollide)
     {
         if (blockcollide.collider.tag == "Kirby")
         {
-            if (isBreakable == true)
-            {    
-                Color tmp = Block.GetComponent<SpriteRenderer>().color;
-                tmp.a = 0f;
-                Block.GetComponent<SpriteRenderer>().color = tmp;
+            Color tmp = Block.GetComponent<SpriteRenderer>().color;
+            tmp.a = 0f;
+            Block.GetComponent<SpriteRenderer>().color = tmp;
 
-                GetComponent<Collider2D>().enabled = false;
-            }
+            GetComponent<Collider2D>().enabled = false;
 
             if (mysteryCoin == true)
             {
@@ -66,10 +60,10 @@ public class BlockHeadCheck : MonoBehaviour
                 GameObject mushGet = Instantiate(Mushroom, m_location, Quaternion.identity);
             }
 
-            if (star == true)
+            if (flower == true)
             {
                 Vector3 m_location = new Vector3 (x_Location, y_Location + 1, 0f);
-                GameObject flowGet = Instantiate(Star, m_location, Quaternion.identity);
+                GameObject flowGet = Instantiate(Flower, m_location, Quaternion.identity);
             }
         }
     }

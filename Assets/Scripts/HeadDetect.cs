@@ -7,6 +7,8 @@ public class HeadDetect : MonoBehaviour
     GameObject Goomba;
     public Animator animator;
     private GoombaController goombaController;
+
+
     private void Awake()
     {
         Goomba = gameObject.transform.parent.gameObject;

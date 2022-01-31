@@ -70,7 +70,7 @@ public class GoombaController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D goombaCollide)
     {
-        if(goombaCollide.collider.tag == "Turn" || goombaCollide.collider.tag == "Goomba" || (koopaController.death == true && koopaController.transform.position.x == 0 && goombaCollide.collider.tag == "Koopa"))
+        if(goombaCollide.collider.tag == "Turn" || goombaCollide.collider.tag == "Goomba" || ((koopaController.death == false || koopaController.transform.position.x == 0) && goombaCollide.collider.tag == "Koopa"))
         {
             if(moveRight)
             {
@@ -82,7 +82,7 @@ public class GoombaController : MonoBehaviour
             }
         }
 
-        if (koopaController.transform.position.x != 0 && goombaCollide.collider.tag == "Koopa")
+        if ((koopaController.transform.position.x != 0 && goombaCollide.collider.tag == "Koopa") || (kirbyController.isInvinsible == true && goombaCollide.collider.tag == "Kirby"))
         {
             shellHit = true;
         }

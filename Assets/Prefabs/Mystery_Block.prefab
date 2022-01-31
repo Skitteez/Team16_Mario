@@ -74,7 +74,8 @@ MonoBehaviour:
   Mushroom: {fileID: 5212706621394975734, guid: 0e05a6a66fcf5114fa827ffdf9719516, type: 3}
   Flower: {fileID: 6088237151027755838, guid: 1fdf3c12d734b8e48823b4f548346a98, type: 3}
   mysteryCoin: 1
-  coinText: {fileID: 4638308483340520813, guid: c3cbdf1fe688fb74cab6c8df624ebd90, type: 3}
+  coinText: {fileID: 0}
+  coinAmount: 0
   mysteryMushroom: 0
   flower: 0
 --- !u!1 &1294340843266461128
