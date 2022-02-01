@@ -39,7 +39,6 @@
      <Compile Include="Assets\Scripts\KoopaController.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\HeadDetect.cs" />
-     <Compile Include="Assets\Scripts\PauseControl.cs" />
      <Compile Include="Assets\Scripts\TomatoController.cs" />
      <Compile Include="Assets\Scripts\KirbyAnimation.cs" />
      <Compile Include="Assets\Scripts\BrickHeadDetect.cs" />
@@ -47,7 +46,6 @@
      <Compile Include="Assets\Scripts\BlockHeadCheck.cs" />
      <Compile Include="Assets\Scripts\KoopaHeadDetect.cs" />
      <Compile Include="Assets\Scripts\GoombaController.cs" />
-     <Compile Include="Assets\Scripts\BigCollider.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

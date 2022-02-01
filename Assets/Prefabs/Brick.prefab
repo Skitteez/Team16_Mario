@@ -132,7 +132,7 @@ MonoBehaviour:
   Star: {fileID: 7581410422770937464, guid: 5d383d94caf89ec40a58322b3a0b4b17, type: 3}
   coin: 0
   star: 0
-  isBreakable: 1
+  isBreakable: 0
   coinText: {fileID: 4638308483340520813, guid: c3cbdf1fe688fb74cab6c8df624ebd90, type: 3}
   coinAmount: 0
 --- !u!1 &5058671290577812077

@@ -24,7 +24,7 @@ public class KirbyAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         kirbyController = Kirby.GetComponent<KirbyController>();
         animator.SetBool("Big", false);
-        animBig = kirbyController.big;
+        GetComponent<Renderer>();
     }
 
     void Update()
@@ -37,6 +37,13 @@ public class KirbyAnimation : MonoBehaviour
 
         animStar = kirbyController.isInvinsible;
 
+        animBig = kirbyController.big;
+
+        if (kirbyController.onFire == true)
+        {
+            
+        }
+        
         if (kirbyController.isRunning == true)
         {
             animator.SetFloat("Speed", 17); 
@@ -68,11 +75,6 @@ public class KirbyAnimation : MonoBehaviour
             animator.SetBool("Jump", false);
         }
 
-        if (animBig == true)
-        {
-            animator.SetBool("Big", true);
-        }
-
         if (animStar == true)
         {
             animator.SetBool("Star", true);
@@ -80,6 +82,15 @@ public class KirbyAnimation : MonoBehaviour
         if (animStar == false)
         {
             animator.SetBool("Star", false);
+        }
+
+        if (animBig == true)
+        {
+            animator.SetBool("Big", true);
+        }
+        if (animBig == false)
+        {
+            animator.SetBool("Big", false);
         }
 
         if (kirbyController.gameEnd == true)

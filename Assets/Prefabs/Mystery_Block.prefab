@@ -78,6 +78,9 @@ MonoBehaviour:
   coinAmount: 0
   mysteryMushroom: 0
   flower: 0
+  soundSource: {fileID: 1605347736, guid: 9b54d677105375e4c9de6710bd700f17, type: 3}
+  coinSound: {fileID: 8300000, guid: 070770d8819c3014e8fdbdc09a699cda, type: 3}
+  mushroomSound: {fileID: 8300000, guid: 45e7247c769d8fe408ce66ad988ab7dc, type: 3}
 --- !u!1 &1294340843266461128
 GameObject:
   m_ObjectHideFlags: 0

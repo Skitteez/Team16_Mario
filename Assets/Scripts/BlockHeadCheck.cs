@@ -21,6 +21,12 @@ public class BlockHeadCheck : MonoBehaviour
 
     public bool flower;
 
+    public AudioSource soundSource;
+
+    public AudioClip coinSound;
+
+    public AudioClip mushroomSound;
+
     float x_Location, y_Location;
     private void Awake()
     {
@@ -52,18 +58,27 @@ public class BlockHeadCheck : MonoBehaviour
                 GameObject coinGet = Instantiate(Coin, location, Quaternion.identity);
 
                 CoinUp();
+
+                soundSource.clip = coinSound;
+                soundSource.Play();
             }
 
             if (mysteryMushroom == true)
             {
                 Vector3 m_location = new Vector3 (x_Location, y_Location + 1, 0f);
                 GameObject mushGet = Instantiate(Mushroom, m_location, Quaternion.identity);
+
+                soundSource.clip = mushroomSound;
+                soundSource.Play();
             }
 
             if (flower == true)
             {
                 Vector3 m_location = new Vector3 (x_Location, y_Location + 1, 0f);
                 GameObject flowGet = Instantiate(Flower, m_location, Quaternion.identity);
+
+                soundSource.clip = mushroomSound;
+                soundSource.Play();
             }
         }
     }

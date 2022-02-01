@@ -37,6 +37,11 @@ public class KirbyController : MonoBehaviour
     BoxCollider2D kirbyCollider;
 
     public float starTimer = 20.0f;
+
+
+    public AudioSource source;
+
+    public AudioClip bounce;
     
 
     void Start()
@@ -51,6 +56,7 @@ public class KirbyController : MonoBehaviour
         isInvinsible = false;
         gameEnd = false;
         turn = false;
+        big = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -84,21 +90,27 @@ public class KirbyController : MonoBehaviour
         if (collision.collider.tag == "KoopaHead")
         {
             rd2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+            
+            source.clip = bounce;
+            source.Play();
         }
 
-        if (collision.collider.tag == "Head")
+        if (collision.collider.tag== "Head")
         {
             rd2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+            
+            source.clip = bounce;
+            source.Play();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Tomato" && big == false)
+        if (collision.gameObject.tag == "Tomato")
         {
             big = true;
-            this.GetComponent<BoxCollider2D>().size = new Vector2(1.729276f, 1.980337f);
-            this.GetComponent<BoxCollider2D>().offset = new Vector2(-0.08966541f, 0.4901683f);
+            this.GetComponent<BoxCollider2D>().size = new Vector2(1.310516f, 1.310516f);
+            this.GetComponent<BoxCollider2D>().offset = new Vector2(-7.152557e-07f, 0.1552581f);
         
         }
 
@@ -210,8 +222,7 @@ public class KirbyController : MonoBehaviour
         if (gameEnd == false)
         {
             horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
-            rd2d.AddForce(new Vector2(horizontal * speed, vertical * speed));
+            rd2d.AddForce(new Vector2(horizontal * speed, 0));
         }
 
         if (gameEnd == true && transform.position.y <= -2)
