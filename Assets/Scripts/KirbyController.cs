@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class KirbyController : MonoBehaviour
 {
@@ -25,15 +27,47 @@ public class KirbyController : MonoBehaviour
     public GameObject player1option;
     public GameObject player2option;
 
+    public GameObject deathScreen;
+    public GameObject twoLivesScreen;
+    public GameObject oneLifeScreen;
+    public static int lives = 3;
+    public int score;
+    public int deathScore;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI deathScoreText;
+    
+
 
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
+        score = 0;
+        deathScore = 0;
+
+
+        SetScoreText();
+        SetDeathScoreText();
+
         start = false;
         player1Selected = true;
         player2Select.SetActive(false);
+        deathScreen.SetActive(false);
+        twoLivesScreen.SetActive(false);
+        oneLifeScreen.SetActive(false);
+
+    }
+
+    
+    void SetScoreText()
+    {
+        scoreText.text = "" + score.ToString();
+    }
+
+    void SetDeathScoreText()
+    {
+        deathScoreText.text = "" + deathScore.ToString();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -52,6 +86,8 @@ public class KirbyController : MonoBehaviour
                 isJumping = true;
             }
         }
+
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -69,18 +105,105 @@ public class KirbyController : MonoBehaviour
         if (collision.collider.tag == "KoopaHead")
         {
             rd2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+            score = score + 200;
+            deathScore = deathScore + 200;
+            SetScoreText();
+            SetDeathScoreText();
         }
 
         if (collision.collider.tag == "Head")
         {
             rd2d.AddForce(new Vector2(0, 7), ForceMode2D.Impulse);
+            score = score + 100;
+            deathScore = deathScore + 100;
+            SetScoreText();
+            SetDeathScoreText();
+        }
+
+        if(collision.collider.tag == "Goomba")
+        {
+            lives = lives - 1;
+            
+            if (lives == 0)
+            {
+                Invoke("LoadDeathScreen", 3.0f);
+                Invoke("LoadLevelGame", 7.0f);
+                Debug.Log("Ouch!");
+            }
+
+            if (lives == 2)
+            {
+                Invoke("LoadTwoLivesScreen", 3.0f);
+                Invoke("LoadLevelGameTwoLives", 7.0f);
+                Debug.Log("Ouch!");
+            }
+
+            if (lives == 1)
+            {
+                Invoke("LoadOneLifeScreen", 3.0f);
+                Invoke("LoadLevelGameOneLife", 7.0f);
+                Debug.Log("Ouch!");
+            }
+        }
+
+        if(collision.collider.tag == "Koopa")
+        {
+            lives = lives - 1;
+            
+            if (lives == 0)
+            {
+                Invoke("LoadDeathScreen", 3.0f);
+                Invoke("LoadLevelGame", 7.0f);
+                Debug.Log("Ouch!");
+            }
+
+            if (lives == 2)
+            {
+                Invoke("LoadTwoLivesScreen", 3.0f);
+                Invoke("LoadLevelGameTwoLives", 7.0f);
+                Debug.Log("Ouch!");
+            }
+
+            if (lives == 1)
+            {
+                Invoke("LoadOneLifeScreen", 3.0f);
+                Invoke("LoadLevelGameOneLife", 7.0f);
+                Debug.Log("Ouch!");
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    void LoadLevelGame()
+{
+    SceneManager.LoadScene("Scenes/Game");
 
+}
+ void LoadLevelGameTwoLives()
+{
+    SceneManager.LoadScene("Scenes/Game");
+
+}
+void LoadLevelGameOneLife()
+{
+    SceneManager.LoadScene("Scenes/Game");
+
+}
+
+    void LoadDeathScreen()
+{
+    deathScreen.SetActive(true);
+    
+}
+    void LoadTwoLivesScreen()
+    {
+        twoLivesScreen.SetActive(true);
     }
+
+    void LoadOneLifeScreen()
+    {
+        oneLifeScreen.SetActive(true);
+    }
+
     void Update()
     {           
         if(Input.GetKey("escape"))

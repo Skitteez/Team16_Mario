@@ -69,6 +69,7 @@ public class GoombaController : MonoBehaviour
 
 
     private void OnCollisionEnter2D(Collision2D goombaCollide)
+    
     {
         if(goombaCollide.collider.tag == "Turn" || goombaCollide.collider.tag == "Goomba" || (koopaController.transform.position.x == 0 && goombaCollide.collider.tag == "Koopa"))
         {
@@ -87,4 +88,6 @@ public class GoombaController : MonoBehaviour
             shellHit = true;
         }
     }
+    
+
 }
